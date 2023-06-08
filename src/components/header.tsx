@@ -6,6 +6,7 @@ import logo from "../assets/Logo.png";
 import Link from "next/link";
 
 export default function Header({ className }: { className?: string }) {
+  const navlink = 'text-slate-100 font-bold hover:text-orange-500 transition-all';
   return (
     <header
       className={`w-full h-20 flex space ${className} justify-evenly items-center`}
@@ -13,16 +14,16 @@ export default function Header({ className }: { className?: string }) {
       <Image priority={false} src={logo} className="w-1/6" alt="Logo" />
       <div className="relative flex">
       <nav className="flex space-x-4 mr-10 items-center gap-5">
-        <Link className="text-slate-100 font-bold hover:text-slate-200" href="/signin">
+        <Link className={navlink} href="/signin">
           ENTRAR
         </Link>
-        <Link className="text-slate-100 font-bold hover:text-slate-200" href="/signup">
+        <Link className={navlink} href="/signup">
           SIGN UP
         </Link>
-        <Link className="text-slate-100 font-bold hover:text-slate-200" href="#">
+        <Link className={navlink} href="#">
           JOGOS
         </Link>
-        <Link className="text-slate-100 font-bold hover:text-slate-200" href="#">
+        <Link className={navlink} href="#">
           MEMBROS
         </Link>
       </nav>
