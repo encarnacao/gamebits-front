@@ -1,6 +1,4 @@
-import GradientImage from "@/components/gradient-image";
 import Image from "next/image";
-import Link from "next/link";
 import HiFiRush from "../assets/hifirush.jpg";
 import Header from "@/components/header";
 
