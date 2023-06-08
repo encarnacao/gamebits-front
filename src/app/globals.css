@@ -82,4 +82,7 @@ body {
         rgba(0, 0, 0, 0) 58.51851852%
       );
   }
+  .serifed {
+    font-family: 'Bree Serif', serif;
+  }
 }
