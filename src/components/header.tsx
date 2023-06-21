@@ -6,7 +6,7 @@ import logo from "../assets/Logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Header({ className }: { className?: string }) {
   const [search, setSearch] = useState("");
@@ -24,20 +24,14 @@ export default function Header({ className }: { className?: string }) {
       path: "/signup",
     },
     {
-      name: "JOGOS",
-      path: "#",
-    },
-    {
       name: "MEMBROS",
       path: "#",
     },
   ];
 
   const handleSubmit = () => {
-    router.push({
-      pathname: "/search",
-      query: { name: search },
-    });
+    const encoded = encodeURIComponent(search);
+    router.push(`/search?name=${encoded}`);
   };
 
   if (pathname === "/signin" || pathname == "/signup") return null;
@@ -45,7 +39,15 @@ export default function Header({ className }: { className?: string }) {
     <header
       className={`w-full h-20 flex space ${className} justify-evenly items-center`}
     >
-      <Image priority={false} src={logo} className="w-1/6" alt="Logo" />
+      <Image
+        priority={false}
+        src={logo}
+        onClick={() => {
+          router.push("/");
+        }}
+        className="w-1/6 cursor-pointer"
+        alt="Logo"
+      />
       <div className="relative flex">
         <nav className="flex space-x-4 mr-10 items-center gap-5">
           {unsignedNav.map((item) => (
