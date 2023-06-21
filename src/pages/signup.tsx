@@ -1,12 +1,31 @@
 import Image from "next/image";
 import gow from "../assets/gow.png";
-import logo from "../assets/Logo.png"
+import logo from "../assets/Logo.png";
 import GradientImage from "@/components/gradient-image";
 import TextInput from "@/components/text-input";
 import Link from "next/link";
-
+import { ChangeEvent, useState } from "react";
 
 export default function SingUp() {
+  const [form, setForm] = useState({ username: "", email: "", password: "" });
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === "passwordConfirmation") {
+      setPasswordConfirmation(value);
+    } else {
+      setForm({ ...form, [name]: value });
+    }
+  };
+
+  const checkPassword = () => {
+    if (form.password === passwordConfirmation) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <main className="flex flex-col max-h-screen overflow-hidden">
@@ -35,21 +54,45 @@ export default function SingUp() {
       >
         <h1 className="self-center text-2xl">Crie sua conta</h1>
         <form className="flex flex-col gap-8">
-				<div className="flex flex-col">
+          <div className="flex flex-col">
             <label className="text-white">Username</label>
-            <TextInput type="text" placeholder="Digite seu username" />
+            <TextInput
+              type="text"
+              name="username"
+              value={form.username}
+              onChange={handleChange}
+              placeholder="Digite seu username"
+            />
           </div>
           <div className="flex flex-col">
             <label className="text-white">Email</label>
-            <TextInput type="email" placeholder="Digite seu email" />
+            <TextInput
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Digite seu email"
+            />
           </div>
           <div className="flex flex-col">
             <label className="text-white">Senha</label>
-            <TextInput type="password" placeholder="Digite sua senha" />
+            <TextInput
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="Digite sua senha"
+            />
           </div>
-					<div className="flex flex-col">
+          <div className="flex flex-col">
             <label className="text-white">Confirmar senha</label>
-            <TextInput type="password" placeholder="Confirme sua senha" />
+            <TextInput
+              type="password"
+              name="passwordConfirmation"
+              value={passwordConfirmation}
+              onChange={handleChange}
+              placeholder="Confirme sua senha"
+            />
           </div>
           <button className="bg-orange-700 text-white p-2 rounded-lg mt-5">
             Criar conta
