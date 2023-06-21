@@ -79,7 +79,7 @@ export default function Home() {
       <div className="mx-auto mt-10">
         <h1 className="text-slate-400 text-3xl">Na GameBits você pode:</h1>
         <div className="grid grid-cols-3 gap-4">
-          {CardInfo.map((card) => (<Card cardProps={card} />))}
+          {CardInfo.map((card) => (<Card key={card.title} cardProps={card} />))}
         </div>
       </div>
     </main>
