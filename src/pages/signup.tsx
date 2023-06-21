@@ -1,10 +1,10 @@
 import Image from "next/image";
-import gow from "../../assets/gow.png";
-import logo from "../../assets/Logo.png";
+import gow from "../assets/gow.png";
+import logo from "../assets/Logo.png"
 import GradientImage from "@/components/gradient-image";
 import TextInput from "@/components/text-input";
 import Link from "next/link";
-import { useState } from "react";
+
 
 export default function SingUp() {
 
