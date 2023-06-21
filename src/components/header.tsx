@@ -47,7 +47,7 @@ export default function Header({ className }: { className?: string }) {
         }}
         className="w-1/6 cursor-pointer"
         alt="Logo"
-      />
+      /> 
       <div className="relative flex">
         <nav className="flex space-x-4 mr-10 items-center gap-5">
           {unsignedNav.map((item) => (

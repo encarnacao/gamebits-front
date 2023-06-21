@@ -91,6 +91,7 @@ export default function SingUp() {
               name="passwordConfirmation"
               value={passwordConfirmation}
               onChange={handleChange}
+              match={checkPassword()}
               placeholder="Confirme sua senha"
             />
           </div>
