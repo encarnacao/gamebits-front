@@ -56,7 +56,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center p-24 pt-0">
       <div className="relative">
         <Image
-          priority={false}
+          priority={true}
           src={HiFiRush}
           alt="Hi-Fi Rush"
           className="max-w-full"
