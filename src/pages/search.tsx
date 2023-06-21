@@ -32,10 +32,7 @@ export const getServerSideProps: GetServerSideProps<{
   query: any;
 }> = async (context) => {
   const { query } = context;
-  const request = await axios.post(
-    "http://localhost:5000/games?name=" + query.name,
-    {}
-  );
+  const request = await axios.post(`/games?name=${query.name}`, {});
   const MOCKGAMEDATA = request.data;
   return {
     props: {

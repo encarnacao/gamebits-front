@@ -1,17 +1,19 @@
-import Layout from '@/components/layout'
-import type { ReactElement, ReactNode } from 'react'
-import type { NextPage } from 'next'
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
- 
+import Layout from "@/components/layout";
+import type { ReactElement, ReactNode } from "react";
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import axios from "axios";
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
-}
+  getLayout?: (page: ReactElement) => ReactNode;
+};
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-}
- 
-export default function MyApp({ Component, pageProps }:AppPropsWithLayout) {
+  Component: NextPageWithLayout;
+};
+
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
   return (
     <Layout>
       <Head>
@@ -23,5 +25,5 @@ export default function MyApp({ Component, pageProps }:AppPropsWithLayout) {
       </Head>
       <Component {...pageProps} />
     </Layout>
-  )
+  );
 }
