@@ -12,6 +12,7 @@ import {
 } from "@heroicons/react/20/solid";
 import Card from "@/components/home-cards";
 import React from "react";
+import { CardProps } from "@/types";
 
 const CardInfo: CardProps[] = [
   {
@@ -79,21 +80,11 @@ export default function Home() {
       <div className="mx-auto mt-10">
         <h1 className="text-slate-400 text-3xl">Na GameBits você pode:</h1>
         <div className="grid grid-cols-3 gap-4">
-          {CardInfo.map((card) => (<Card key={card.title} cardProps={card} />))}
+          {CardInfo.map((card) => (
+            <Card key={card.title} cardProps={card} />
+          ))}
         </div>
       </div>
     </main>
   );
-}
-
-export type HeroIcon = React.ForwardRefExoticComponent<
-  Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
-    title?: string | undefined;
-    titleId?: string | undefined;
-  } & React.RefAttributes<SVGSVGElement>
->;
-export interface CardProps {
-  icon: HeroIcon;
-  title: string;
-  description: string;
 }
