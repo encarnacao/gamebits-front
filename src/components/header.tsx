@@ -5,29 +5,54 @@ import Image from "next/image";
 import logo from "../assets/Logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { parseCookies } from "nookies";
+import { AuthContext } from "@/contexts/auth-context";
+
+const unsignedNav = [
+  {
+    name: "ENTRAR",
+    path: "/signin",
+  },
+  {
+    name: "SIGN UP",
+    path: "/signup",
+  },
+  {
+    name: "MEMBROS",
+    path: "#",
+  },
+];
+
+const signedNav = [
+  {
+    name: "MEU PERFIL",
+    path: "/me",
+  },
+  {
+    name: "MEMBROS",
+    path: "#",
+  },
+  {
+    name: "SAIR",
+    path: "/signout",
+  },
+];
 
 export default function Header({ className }: { className?: string }) {
   const [search, setSearch] = useState("");
+  const { signIn, checkSignIn } = useContext(AuthContext);
   const router = useRouter();
+  const pathname = usePathname();
   const navlink =
     "text-slate-100 font-bold hover:text-orange-500 transition-all";
-  const pathname = usePathname();
-  const unsignedNav = [
-    {
-      name: "ENTRAR",
-      path: "/signin",
-    },
-    {
-      name: "SIGN UP",
-      path: "/signup",
-    },
-    {
-      name: "MEMBROS",
-      path: "#",
-    },
-  ];
+
+  useEffect(() => {
+    checkSignIn();
+  }, [signIn]);
+
+  const navLinks = signIn ? signedNav : unsignedNav;
 
   const handleSubmit = () => {
     const encoded = encodeURIComponent(search);
@@ -40,17 +65,17 @@ export default function Header({ className }: { className?: string }) {
       className={`w-full h-20 flex space ${className} justify-evenly items-center`}
     >
       <Image
-        priority={false}
+        priority={true}
         src={logo}
         onClick={() => {
           router.push("/");
         }}
         className="w-1/6 cursor-pointer"
         alt="Logo"
-      /> 
+      />
       <div className="relative flex">
         <nav className="flex space-x-4 mr-10 items-center gap-5">
-          {unsignedNav.map((item) => (
+          {navLinks.map((item) => (
             <Link className={navlink} href={item.path} key={item.name}>
               {item.name}
             </Link>
