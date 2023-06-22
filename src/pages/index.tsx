@@ -11,7 +11,11 @@ import {
   ChatBubbleBottomCenterIcon,
 } from "@heroicons/react/20/solid";
 import Card from "@/components/home-cards";
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { CardProps } from "@/types";
+import { parseCookies } from "nookies";
+import { useRouter } from "next/navigation";
+import { AuthContext } from "@/contexts/auth-context";
 
 const CardInfo: CardProps[] = [
   {
@@ -52,6 +56,15 @@ const CardInfo: CardProps[] = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+  const { signIn, checkSignIn } = useContext(AuthContext);
+  useEffect(() => {
+    checkSignIn();
+    if (signIn) {
+      router.push("/me");
+    }
+  }, [signIn]);
+
   return (
     <main className="flex min-h-screen flex-col items-center p-24 pt-0">
       <div className="relative">
@@ -79,21 +92,11 @@ export default function Home() {
       <div className="mx-auto mt-10">
         <h1 className="text-slate-400 text-3xl">Na GameBits você pode:</h1>
         <div className="grid grid-cols-3 gap-4">
-          {CardInfo.map((card) => (<Card key={card.title} cardProps={card} />))}
+          {CardInfo.map((card) => (
+            <Card key={card.title} cardProps={card} />
+          ))}
         </div>
       </div>
     </main>
   );
-}
-
-export type HeroIcon = React.ForwardRefExoticComponent<
-  Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
-    title?: string | undefined;
-    titleId?: string | undefined;
-  } & React.RefAttributes<SVGSVGElement>
->;
-export interface CardProps {
-  icon: HeroIcon;
-  title: string;
-  description: string;
 }
