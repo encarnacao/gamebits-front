@@ -41,11 +41,15 @@ export default function MePage({
           {menu.map((item, index) => (
             <h1
               className={`text-2xl serifed transition-all mb-4 cursor-pointer ${
-                selected === index ? "text-orange-500" : "text-slate-200 hover:text-orange-300"
+                selected === index
+                  ? "text-orange-500"
+                  : "text-slate-200 hover:text-orange-300"
               }`}
               onClick={() => setSelected(index)}
               key={item}
-            >{item}</h1>
+            >
+              {item}
+            </h1>
           ))}
         </nav>
       </div>
@@ -66,6 +70,7 @@ export const getServerSideProps: GetServerSideProps<{
       },
     });
     const data = request.data;
+    setCookie(context, "id", data.id, { path: "/" });
     return {
       props: {
         data,
