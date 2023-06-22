@@ -4,11 +4,18 @@ import zelda from "../assets/zelda.jpg";
 import Link from "next/link";
 import TextInput from "@/components/text-input";
 import GradientImage from "@/components/gradient-image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { userSignIn } from "@/api/user-requests";
+import { setCookie, parseCookies } from "nookies";
+import { useRouter } from "next/navigation";
+import { AuthContext } from "@/contexts/auth-context";
 
 export default function SignIn() {
   const [body, setBody] = useState({ email: "", password: "" });
+  const { checkSignIn } = useContext(AuthContext);
+  const router = useRouter();
+  const token = parseCookies().token;
+  if (token) router.push("/me");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,9 +25,10 @@ export default function SignIn() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const response = await userSignIn(body);
-    console.log(response);
     if (response) {
-      localStorage.setItem("token", response.token);
+      setCookie(null, "token", response.token, { path: "/" });
+      checkSignIn();
+      router.push("/me");
     }
   };
 
