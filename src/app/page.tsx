@@ -56,7 +56,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center p-24 pt-0">
       <div className="relative">
         <Image
-          priority={false}
+          priority={true}
           src={HiFiRush}
           alt="Hi-Fi Rush"
           className="max-w-full"
@@ -79,7 +79,7 @@ export default function Home() {
       <div className="mx-auto mt-10">
         <h1 className="text-slate-400 text-3xl">Na GameBits você pode:</h1>
         <div className="grid grid-cols-3 gap-4">
-          {CardInfo.map((card) => (<Card cardProps={card} />))}
+          {CardInfo.map((card) => (<Card key={card.title} cardProps={card} />))}
         </div>
       </div>
     </main>
