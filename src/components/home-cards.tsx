@@ -1,4 +1,4 @@
-import { CardProps } from "@/app/page";
+import { CardProps } from "@/types";
 
 export default function Card({ cardProps }: { cardProps: CardProps}) {
   return (
