@@ -1,15 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import axios from "axios";
 import GameCard from "@/components/game-card";
-
-export type GameData = {
-  id: number;
-  coverUrl: string;
-  name: string;
-  releaseDate: string;
-  platformNames: string;
-  summary: string;
-};
+import { GameData } from "@/types";
 
 export default function Search({
   data,
