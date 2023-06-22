@@ -7,11 +7,14 @@ import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { userSingUp } from "@/api/user-requests";
+import { parseCookies } from "nookies";
 
 export default function SingUp() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const router = useRouter();
+  const token = parseCookies().token;
+  if (token) router.push("/me");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
