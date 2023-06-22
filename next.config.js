@@ -9,7 +9,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "blog.springshare.com",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "pbs.twimg.com",
+      },
     ],
   },
 };
