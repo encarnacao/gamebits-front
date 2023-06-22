@@ -5,13 +5,23 @@ import Link from "next/link";
 import TextInput from "@/components/text-input";
 import GradientImage from "@/components/gradient-image";
 import { ChangeEvent, useState } from "react";
+import { userSignIn } from "@/api/user-requests";
 
 export default function SignIn() {
-  const [body, setBody] = useState({email:"", password:""});
-  
+  const [body, setBody] = useState({ email: "", password: "" });
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setBody({ ...body, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await userSignIn(body);
+    console.log(response);
+    if (response) {
+      localStorage.setItem("token", response.token);
+    }
   };
 
   return (
@@ -25,16 +35,31 @@ export default function SignIn() {
       </div>
       <div className="flex flex-col w-1/4 p-10 bg-slate-900 justify-evenly">
         <h1 className="self-center text-2xl">Faça seu login</h1>
-        <form className="flex flex-col gap-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex flex-col">
             <label className="text-white">Email</label>
-            <TextInput type="email" value={body.email} onChange={handleChange} name="email" placeholder="Digite seu email" />
+            <TextInput
+              type="email"
+              value={body.email}
+              onChange={handleChange}
+              name="email"
+              placeholder="Digite seu email"
+            />
           </div>
           <div className="flex flex-col">
             <label className="text-white">Senha</label>
-            <TextInput value={body.password} onChange={handleChange} name="password" type="password" placeholder="Digite sua senha" />
+            <TextInput
+              value={body.password}
+              onChange={handleChange}
+              name="password"
+              type="password"
+              placeholder="Digite sua senha"
+            />
           </div>
-          <button className="bg-orange-700 text-white p-2 rounded-lg mt-5">
+          <button
+            type="submit"
+            className="bg-orange-700 text-white p-2 rounded-lg mt-5"
+          >
             Entrar
           </button>
         </form>

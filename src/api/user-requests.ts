@@ -20,3 +20,14 @@ export async function userSingUp(body: {
     return false;
   }
 }
+
+export async function userSignIn(body: { email: string; password: string }) {
+  try {
+    const response = await axios.post("/users/signin", body);
+    return response.data;
+  } catch (error: any) {
+    console.log(error);
+    alert(`Error ${error.response.status}: ${error.response.data.message}`);
+    return false;
+  }
+}
