@@ -5,10 +5,13 @@ import GradientImage from "@/components/gradient-image";
 import TextInput from "@/components/text-input";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { userSingUp } from "@/api/user-requests";
 
 export default function SingUp() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const router = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,6 +27,16 @@ export default function SingUp() {
       return true;
     } else {
       return false;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (checkPassword()) {
+      const request = await userSingUp(form);
+      if (request) router.push("/signin");
+    } else {
+      alert("As senhas não coincidem");
     }
   };
 
@@ -53,7 +66,7 @@ export default function SingUp() {
         `}
       >
         <h1 className="self-center text-2xl">Crie sua conta</h1>
-        <form className="flex flex-col gap-8">
+        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <label className="text-white">Username</label>
             <TextInput
@@ -95,7 +108,10 @@ export default function SingUp() {
               placeholder="Confirme sua senha"
             />
           </div>
-          <button className="bg-orange-700 text-white p-2 rounded-lg mt-5">
+          <button
+            type="submit"
+            className="bg-orange-700 text-white p-2 rounded-lg mt-5"
+          >
             Criar conta
           </button>
         </form>

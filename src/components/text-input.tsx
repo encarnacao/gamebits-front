@@ -5,7 +5,7 @@ export default function TextInput({
   placeholder,
   value,
   name,
-  match=true,
+  match = true,
   onChange,
 }: {
   type: string;
@@ -33,6 +33,7 @@ export default function TextInput({
       type={type}
       onChange={onChange}
       placeholder={placeholder}
+      minLength={3}
     />
   );
 }
