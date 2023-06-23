@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import axios from "axios";
 import GameCard from "@/components/game-card";
 import { GameData } from "@/types";
+import { searchGames } from "@/api";
 
 export default function Search({
   data,
@@ -15,6 +15,11 @@ export default function Search({
       {data.map((game) => (
         <GameCard data={game} key={game.id} />
       ))}
+      {data.length === 0 && (
+        <h1 className="text-4xl text-slate-200 serifed mt-20">
+          Nenhum jogo encontrado
+        </h1>
+      )}
     </main>
   );
 }
@@ -24,11 +29,10 @@ export const getServerSideProps: GetServerSideProps<{
   query: any;
 }> = async (context) => {
   const { query } = context;
-  const request = await axios.post(`/games?name=${query.name}`, {});
-  const MOCKGAMEDATA = request.data;
+  const data = await searchGames(query.name as string);
   return {
     props: {
-      data: MOCKGAMEDATA,
+      data,
       query,
     },
   };

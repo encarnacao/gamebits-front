@@ -5,7 +5,7 @@ import Link from "next/link";
 import TextInput from "@/components/text-input";
 import GradientImage from "@/components/gradient-image";
 import { ChangeEvent, useContext, useState } from "react";
-import { userSignIn } from "@/api/user-requests";
+import { userSignIn } from "@/api";
 import { setCookie, parseCookies } from "nookies";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/contexts/auth-context";
