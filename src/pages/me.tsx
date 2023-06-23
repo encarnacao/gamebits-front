@@ -64,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<{
     const cookies = parseCookies(context);
     const token = cookies.token;
     const data = await getMe(token);
-    setCookie(context, "id", data.id, { path: "/" });
+    setCookie(context, "id", JSON.stringify(data.id), { path: "/" });
     return {
       props: {
         data,

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { parseCookies } from "nookies";
+import { destroyCookie } from "nookies";
 import { AuthContext } from "@/contexts/auth-context";
 
 const unsignedNav = [
@@ -36,7 +36,7 @@ const signedNav = [
   },
   {
     name: "SAIR",
-    path: "/signout",
+    path: "/",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function Header({ className }: { className?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const navlink =
-    "text-slate-100 font-bold hover:text-orange-500 transition-all";
+    "text-slate-100 font-bold hover:text-orange-500 transition-all cursor-pointer";
 
   useEffect(() => {
     checkSignIn();
@@ -74,11 +74,20 @@ export default function Header({ className }: { className?: string }) {
         alt="Logo"
       />
       <div className="relative flex">
-        <nav className="flex space-x-4 mr-10 items-center gap-5">
+        <nav className="flex space-x-4 mr-10 items-center gap-5 list-none">
           {navLinks.map((item) => (
-            <Link className={navlink} href={item.path} key={item.name}>
+            <li
+              className={navlink}
+              onClick={() => {
+                if (item.name === "SAIR") {
+                  destroyCookie(null, "token");
+                }
+                router.push(item.path);
+              }}
+              key={item.name}
+            >
               {item.name}
-            </Link>
+            </li>
           ))}
         </nav>
         <input
