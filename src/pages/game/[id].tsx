@@ -3,25 +3,30 @@ import { SingleGame } from "@/types";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import axios from "axios";
 import dayjs from "dayjs";
+import { getGameById } from "@/api";
 
 export default function GamePage({
-  data,
+  gameData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
-  if (!data) {
+  if (!gameData) {
     return <div>Game not found</div>;
   }
   return (
     <main>
       <div className="flex w-3/5 items-center justify-between flex-1 p-10 text-center mt-52 bg-slate-950 mx-auto border-b-4 border-slate-600">
         <div className="flex items-center">
-        <img src={data.cover_url} className="w-32 absolute top-40 border-t-4 border-l-4 border-orange-500" alt="capa" />
+          <img
+            src={gameData.cover_url}
+            className="w-32 absolute top-40 border-t-4 border-l-4 border-orange-500"
+            alt="capa"
+          />
           <div className="ml-40 text-left">
             <h1 className="text-4xl text-slate-200 serifed ml-8">
-              {data.name}
+              {gameData.name}
             </h1>
             <h1 className="text-xl text-slate-200 serifed ml-8">
-              Plataformas: {data.platforms}
+              Plataformas: {gameData.platforms}
             </h1>
           </div>
         </div>
@@ -29,10 +34,10 @@ export default function GamePage({
           <div className="text-right">
             <h2 className="text-xl text-slate-200 serifed mb-4">
               Lançamento:{" "}
-              {dayjs(data.original_release_date).format("DD/MM/YYYY")}
+              {dayjs(gameData.original_release_date).format("DD/MM/YYYY")}
             </h2>
             <h2 className="text-xl text-slate-200 serifed mb-4">
-              Gêneros: {data.genres}
+              Gêneros: {gameData.genres}
             </h2>
           </div>
         </div>
@@ -42,23 +47,14 @@ export default function GamePage({
 }
 
 export const getServerSideProps: GetServerSideProps<{
-  data: SingleGame | null;
+  gameData: SingleGame | null;
 }> = async (context) => {
-  try {
-    const params = context.params;
-    const id = params?.id;
-    const request = await axios.get(`/games/${id}`);
-    const data = request.data;
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch {
-    return {
-      props: {
-        data: null,
-      },
-    };
-  }
+  const params = context.params;
+  const id = params?.id as string;
+  const gameData = await getGameById(id);
+  return {
+    props: {
+      gameData,
+    },
+  };
 };

@@ -6,7 +6,7 @@ import TextInput from "@/components/text-input";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { userSingUp } from "@/api/user-requests";
+import { userSingUp } from "@/api";
 import { parseCookies } from "nookies";
 
 export default function SingUp() {

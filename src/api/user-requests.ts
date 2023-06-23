@@ -31,3 +31,13 @@ export async function userSignIn(body: { email: string; password: string }) {
     return false;
   }
 }
+
+export async function getMe(token: string) {
+  const request = await axios.get("/users/me", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = request.data;
+  return data;
+}

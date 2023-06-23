@@ -1,9 +1,9 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { UserData } from "@/types";
-import axios from "axios";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import Image from "next/image";
 import { useState } from "react";
+import { getMe } from "@/api";
 
 export default function MePage({
   data,
@@ -63,13 +63,7 @@ export const getServerSideProps: GetServerSideProps<{
   try {
     const cookies = parseCookies(context);
     const token = cookies.token;
-    console.log("token: " + token);
-    const request = await axios.get("/users/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = request.data;
+    const data = await getMe(token);
     setCookie(context, "id", data.id, { path: "/" });
     return {
       props: {
