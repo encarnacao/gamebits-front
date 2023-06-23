@@ -1,3 +1,4 @@
+import { UserData } from "@/types";
 import axios from "axios";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
@@ -21,7 +22,10 @@ export async function userSingUp(body: {
   }
 }
 
-export async function userSignIn(body: { email: string; password: string }) {
+export async function userSignIn(body: {
+  email: string;
+  password: string;
+}) {
   try {
     const response = await axios.post("/users/signin", body);
     return response.data;
@@ -32,7 +36,7 @@ export async function userSignIn(body: { email: string; password: string }) {
   }
 }
 
-export async function getMe(token: string) {
+export async function getMe(token: string): Promise<UserData> {
   const request = await axios.get("/users/me", {
     headers: {
       Authorization: `Bearer ${token}`,
