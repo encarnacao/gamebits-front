@@ -33,6 +33,32 @@ export interface SingleGame {
   updated_at: string;
 }
 
+export interface LibraryEntry {
+  id: Number;
+  game: {
+    id: number;
+    name: string;
+    cover: string;
+    originalReleaseDate: string;
+    platforms: string;
+    genres: string;
+  };
+  wishlist: boolean;
+  finished: boolean;
+  platinum: boolean;
+  completion_time: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GameBooleans {
+  inLibrary: boolean;
+  inWishlist: boolean;
+  finished: boolean;
+  platinum: boolean;
+  completion_time: string | null;
+}
+
 export type HeroIcon = React.ForwardRefExoticComponent<
   Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
     title?: string | undefined;
