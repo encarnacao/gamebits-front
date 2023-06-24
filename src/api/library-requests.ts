@@ -24,3 +24,59 @@ export async function getUserWishlist(
     return null;
   }
 }
+
+export async function addLibraryEntry(token: string, gameId: number) {
+  try {
+    await axios.post(
+      `/libraries/add/${gameId}`,
+      {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
+
+export async function addWishlistEntry(token: string, gameId: number) {
+  try {
+    await axios.post(
+      `/libraries/wishlist/${gameId}`,
+      {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function removeLibraryEntry(token: string, gameId: number) {
+  try {
+    await axios.delete(`/libraries/${gameId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function updateLibraryEntry(
+  token: string,
+  gameId: number,
+  body: {
+    status: string;
+    completion_time?: string;
+  }
+) {
+  try {
+    await axios.put(`/libraries/${gameId}`, body, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
