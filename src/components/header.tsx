@@ -3,7 +3,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import logo from "../assets/Logo.png";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -81,6 +80,7 @@ export default function Header({ className }: { className?: string }) {
               onClick={() => {
                 if (item.name === "SAIR") {
                   destroyCookie(null, "token");
+                  destroyCookie(null, "id");
                 }
                 router.push(item.path);
               }}
