@@ -4,6 +4,7 @@ export interface UserData {
   imageUrl: string;
   followers: number;
   following: number;
+  followedByUser?: boolean;
 }
 
 export interface GameData {
@@ -37,6 +38,7 @@ export interface LibraryEntry {
   id: Number;
   game: {
     id: number;
+    igdb_id: number;
     name: string;
     cover: string;
     originalReleaseDate: string;
@@ -57,6 +59,17 @@ export interface GameBooleans {
   finished: boolean;
   platinum: boolean;
   completion_time: string | null;
+}
+
+export interface LibraryButtonProps {
+  type: "library" | "status" | "time";
+  status?: "finished" | "platinum" | "completion_time";
+  icon: HeroIcon;
+  boolean: boolean;
+  trueText: string;
+  falseText: string;
+  disabled: boolean;
+  function: (...args: any) => Promise<boolean>;
 }
 
 export type HeroIcon = React.ForwardRefExoticComponent<
