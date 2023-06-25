@@ -16,10 +16,12 @@ export default function LibraryCard({
   };
   const markers = [
     {
+      name: "finished",
       Icon: FlagIcon,
       boolean: entry.finished,
     },
     {
+      name: "platinum",
       Icon: TrophyIcon,
       boolean: entry.platinum,
     },
@@ -27,10 +29,10 @@ export default function LibraryCard({
   return (
     <div
       onClick={handleClick}
-      className="flex w-11/12 justify-between p-4 mx-auto group overflow-hidden rounded-lg h-32 bg-slate-900 my-2 transition-all hover:bg-slate-800 cursor-pointer"
+      className="flex w-11/12 justify-between p-4 mx-auto group overflow-hidden rounded-lg bg-slate-900 my-2 transition-all hover:bg-slate-800 cursor-pointer"
     >
       <div className="flex">
-        <Image src={entry.game.cover} alt="Game Cover" width={64} height={64} />
+        <Image src={entry.game.cover} alt="Game Cover" width={64} height={64} className="object-cover"/>
         <div className="ml-4">
           <div className="flex">
             <h1 className="text-xl group-hover:text-orange-500 transition-all duration-300">
@@ -41,7 +43,7 @@ export default function LibraryCard({
               <Marker
                 Icon={marker.Icon}
                 boolean={marker.boolean}
-                key={`${entry.id}-${marker.Icon}`}
+                key={`${entry.id}-${marker.name}`}
               />
             ))}
             </div>
