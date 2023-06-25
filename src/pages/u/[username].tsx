@@ -14,6 +14,7 @@ import UserInfo from "@/components/user-info";
 import UserMenu from "@/components/user-menu";
 import LibraryInfo from "@/components/library-info";
 import { ParsedUrlQuery } from "querystring";
+import Follows from "@/components/follows";
 
 export default function UserPage({
   userData,
@@ -24,10 +25,10 @@ export default function UserPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [selected, setSelected] = useState(0);
   const cards = [
-    <LibraryInfo key={`games`} library={gamesData} />,
-    <LibraryInfo key={`games`} library={wishlistData} />,
-    <>Following</>,
-    <>Followers</>,
+    <LibraryInfo key="game" library={gamesData} />,
+    <LibraryInfo key="wishlist" library={wishlistData} />,
+    <Follows key="following" followData={followingData}/>,
+    <Follows key="followers" followData={followersData}/>,
     <>Não implementado ainda</>,
   ];
   return (
