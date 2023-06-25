@@ -24,21 +24,21 @@ export interface CardProps {
 
 export interface SingleGame {
   id: number;
-  igdb_id: number;
+  igdbId: number;
   name: string;
-  cover_url: string;
-  original_release_date: string;
+  coverUrl: string;
+  originalReleaseDate: string;
   platforms: string;
   genres: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface LibraryEntry {
   id: Number;
   game: {
     id: number;
-    igdb_id: number;
+    igdbId: number;
     name: string;
     cover: string;
     originalReleaseDate: string;
@@ -48,9 +48,9 @@ export interface LibraryEntry {
   wishlist: boolean;
   finished: boolean;
   platinum: boolean;
-  completion_time: string;
-  created_at: string;
-  updated_at: string;
+  completionTime: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface GameBooleans {
@@ -58,7 +58,7 @@ export interface GameBooleans {
   inWishlist: boolean;
   finished: boolean;
   platinum: boolean;
-  completion_time: string | null;
+  completionTime: string | null;
 }
 
 export interface LibraryButtonProps {
@@ -70,6 +70,12 @@ export interface LibraryButtonProps {
   falseText: string;
   disabled: boolean;
   function: (...args: any) => Promise<boolean>;
+}
+
+export interface FollowData {
+  id: number;
+  username: string;
+  imageUrl: string;
 }
 
 export type HeroIcon = React.ForwardRefExoticComponent<

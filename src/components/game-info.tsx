@@ -6,7 +6,7 @@ export default function GameInfo({ gameData }: { gameData: SingleGame }) {
     <div className="flex w-3/5 items-center justify-between flex-1 p-10 text-center mt-52 bg-slate-950 mx-auto border-b-4 border-slate-600">
       <div className="flex items-center">
         <img
-          src={gameData.cover_url}
+          src={gameData.coverUrl}
           className="w-32 absolute top-40 border-t-4 border-l-4 border-orange-500"
           alt="capa"
         />
@@ -23,7 +23,7 @@ export default function GameInfo({ gameData }: { gameData: SingleGame }) {
         <div className="text-right">
           <h2 className="text-xl text-slate-200 serifed mb-4">
             Lançamento:{" "}
-            {dayjs(gameData.original_release_date).format("DD/MM/YYYY")}
+            {dayjs(gameData.originalReleaseDate).format("DD/MM/YYYY")}
           </h2>
           <h2 className="text-xl text-slate-200 serifed mb-4">
             Gêneros: {gameData.genres}

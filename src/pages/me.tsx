@@ -1,8 +1,14 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { LibraryEntry, UserData } from "@/types";
+import { FollowData, LibraryEntry, UserData } from "@/types";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import { useState } from "react";
-import { getMe, getUserLibrary, getUserWishlist } from "@/api";
+import {
+  getFollowers,
+  getFollowing,
+  getMe,
+  getUserLibrary,
+  getUserWishlist,
+} from "@/api";
 import UserInfo from "@/components/user-info";
 import UserMenu from "@/components/user-menu";
 import LibraryInfo from "@/components/library-info";
@@ -11,6 +17,8 @@ export default function MePage({
   userData,
   gamesData,
   wishlistData,
+  followersData,
+  followingData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [selected, setSelected] = useState(0);
   const cards = [
@@ -18,7 +26,7 @@ export default function MePage({
     <LibraryInfo key="wishlist" library={wishlistData} />,
     <>Following</>,
     <>Followers</>,
-    <>Reviews</>,
+    <>Não implementado ainda</>,
   ];
   return (
     <main className="flex flex-col">
@@ -35,6 +43,8 @@ export const getServerSideProps: GetServerSideProps<{
   userData: UserData;
   gamesData: LibraryEntry[];
   wishlistData: LibraryEntry[];
+  followersData: FollowData[];
+  followingData: FollowData[];
 }> = async (context) => {
   try {
     const cookies = parseCookies(context);
@@ -42,12 +52,16 @@ export const getServerSideProps: GetServerSideProps<{
     const userData = await getMe(token);
     const gamesData = await getUserLibrary(userData.id);
     const wishlistData = await getUserWishlist(userData.id);
+    const followersData = await getFollowers(userData.id);
+    const followingData = await getFollowing(userData.id);
     setCookie(context, "id", JSON.stringify(userData.id), { path: "/" });
     return {
       props: {
         userData,
         gamesData,
         wishlistData,
+        followersData,
+        followingData,
       },
     };
   } catch {

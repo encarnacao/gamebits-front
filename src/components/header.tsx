@@ -20,7 +20,7 @@ const unsignedNav = [
   },
   {
     name: "MEMBROS",
-    path: "#",
+    path: "/members",
   },
 ];
 
@@ -31,7 +31,7 @@ const signedNav = [
   },
   {
     name: "MEMBROS",
-    path: "#",
+    path: "/members",
   },
   {
     name: "SAIR",

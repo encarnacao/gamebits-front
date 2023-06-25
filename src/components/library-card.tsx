@@ -12,7 +12,7 @@ export default function LibraryCard({
 }) {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/game/${entry.game.igdb_id}`);
+    router.push(`/game/${entry.game.igdbId}`);
   };
   const markers = [
     {
@@ -58,17 +58,17 @@ export default function LibraryCard({
       </div>
       <div className="flex flex-col justify-between">
         <h1 className="text-l">
-          Adicionado em: {dayjs(entry.created_at).format("DD/MM/YY")}
+          Adicionado em: {dayjs(entry.createdAt).format("DD/MM/YY")}
         </h1>
         <div
           className={`${
-            entry.wishlist || !Boolean(entry.completion_time)
+            entry.wishlist || !Boolean(entry.completionTime)
               ? "hidden"
               : "flex items-center"
           }`}
         >
           <ClockIcon className="w-6 h-6 mr-4" />
-          <h1 className="text-l">{entry.completion_time} horas</h1>
+          <h1 className="text-l">{entry.completionTime} horas</h1>
         </div>
       </div>
     </div>

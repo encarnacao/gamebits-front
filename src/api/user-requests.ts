@@ -60,3 +60,9 @@ export async function getAllUsers(): Promise<UserData[]> {
   const data = request.data;
   return data;
 }
+
+export async function searchUser(query: string): Promise<UserData[]> {
+  const request = await axios.get(`/users/search?username=${query}`);
+  const data = request.data;
+  return data;
+}

@@ -55,7 +55,7 @@ export default function GameButtons({
       type: "time",
       status: "completion_time",
       icon: ClockIcon,
-      boolean: Boolean(booleans.completion_time),
+      boolean: Boolean(booleans.completionTime),
       trueText: "Alterar tempo de jogo",
       falseText: "Adicionar tempo de jogo",
       disabled: !booleans.finished,
