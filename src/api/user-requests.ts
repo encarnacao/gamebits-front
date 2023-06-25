@@ -44,10 +44,12 @@ export async function getMe(token: string): Promise<UserData> {
 }
 
 export async function getUserByUsername(
-  username: string
+  username: string,
+  token?: string
 ): Promise<UserData | null> {
   try {
-    const request = await axios.get(`/users/u/${username}`);
+    const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+    const request = await axios.get(`/users/u/${username}`,config);
     const data = request.data;
     return data;
   } catch {
