@@ -14,8 +14,8 @@ export default function MePage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [selected, setSelected] = useState(0);
   const cards = [
-    <LibraryInfo library={gamesData} />,
-    <LibraryInfo library={wishlistData} />,
+    <LibraryInfo key="games" library={gamesData} />,
+    <LibraryInfo key="wishlist" library={wishlistData} />,
     <>Following</>,
     <>Followers</>,
     <>Reviews</>,
