@@ -15,7 +15,7 @@ export async function CheckGameLibrary(
       inWishlist: checkForEntry.wishlist,
       finished: checkForEntry.finished,
       platinum: checkForEntry.platinum,
-      completion_time: checkForEntry.completion_time,
+      completionTime: checkForEntry.completionTime,
     };
   } else {
     return await CheckGameWishlist(userId, gameId);
@@ -36,7 +36,7 @@ async function CheckGameWishlist(
       inWishlist: checkForEntry.wishlist,
       finished: checkForEntry.finished,
       platinum: checkForEntry.platinum,
-      completion_time: checkForEntry.completion_time,
+      completionTime: checkForEntry.completionTime,
     };
   } else {
     return {
@@ -44,7 +44,7 @@ async function CheckGameWishlist(
       inWishlist: false,
       finished: false,
       platinum: false,
-      completion_time: null,
+      completionTime: null,
     };
   }
 }

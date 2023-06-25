@@ -22,10 +22,7 @@ export async function userSingUp(body: {
   }
 }
 
-export async function userSignIn(body: {
-  email: string;
-  password: string;
-}) {
+export async function userSignIn(body: { email: string; password: string }) {
   try {
     const response = await axios.post("/users/signin", body);
     return response.data;
@@ -42,6 +39,32 @@ export async function getMe(token: string): Promise<UserData> {
       Authorization: `Bearer ${token}`,
     },
   });
+  const data = request.data;
+  return data;
+}
+
+export async function getUserByUsername(
+  username: string,
+  token?: string
+): Promise<UserData | null> {
+  try {
+    const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+    const request = await axios.get(`/users/u/${username}`,config);
+    const data = request.data;
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+export async function getAllUsers(): Promise<UserData[]> {
+  const request = await axios.get("/users/all");
+  const data = request.data;
+  return data;
+}
+
+export async function searchUser(query: string): Promise<UserData[]> {
+  const request = await axios.get(`/users/search?username=${query}`);
   const data = request.data;
   return data;
 }

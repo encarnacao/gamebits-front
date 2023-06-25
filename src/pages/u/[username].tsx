@@ -6,14 +6,16 @@ import {
   getFollowers,
   getFollowing,
   getMe,
+  getUserByUsername,
   getUserLibrary,
   getUserWishlist,
 } from "@/api";
 import UserInfo from "@/components/user-info";
 import UserMenu from "@/components/user-menu";
 import LibraryInfo from "@/components/library-info";
+import { ParsedUrlQuery } from "querystring";
 
-export default function MePage({
+export default function UserPage({
   userData,
   gamesData,
   wishlistData,
@@ -22,8 +24,8 @@ export default function MePage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [selected, setSelected] = useState(0);
   const cards = [
-    <LibraryInfo key="games" library={gamesData} />,
-    <LibraryInfo key="wishlist" library={wishlistData} />,
+    <LibraryInfo key={`games`} library={gamesData} />,
+    <LibraryInfo key={`games`} library={wishlistData} />,
     <>Following</>,
     <>Followers</>,
     <>Não implementado ainda</>,
@@ -46,31 +48,28 @@ export const getServerSideProps: GetServerSideProps<{
   followersData: FollowData[];
   followingData: FollowData[];
 }> = async (context) => {
-  try {
-    const cookies = parseCookies(context);
-    const token = cookies.token;
-    const userData = await getMe(token);
-    const gamesData = await getUserLibrary(userData.id);
-    const wishlistData = await getUserWishlist(userData.id);
-    const followersData = await getFollowers(userData.id);
-    const followingData = await getFollowing(userData.id);
-    setCookie(context, "id", JSON.stringify(userData.id), { path: "/" });
-    return {
-      props: {
-        userData,
-        gamesData,
-        wishlistData,
-        followersData,
-        followingData,
-      },
-    };
-  } catch {
-    destroyCookie(null, "token");
+  const { token } = parseCookies(context);
+  const params = context.params as ParsedUrlQuery;
+  const userData = await getUserByUsername(params.username as string, token);
+  if (!userData) {
     return {
       redirect: {
-        destination: "/signin",
+        destination: "/404",
         permanent: false,
       },
     };
   }
+  const gamesData = await getUserLibrary(userData.id);
+  const wishlistData = await getUserWishlist(userData.id);
+  const followersData = await getFollowers(userData.id);
+  const followingData = await getFollowing(userData.id);
+  return {
+    props: {
+      userData,
+      gamesData,
+      wishlistData,
+      followersData,
+      followingData,
+    },
+  };
 };
