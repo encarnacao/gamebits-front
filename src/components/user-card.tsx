@@ -1,4 +1,4 @@
-import { FollowData, UserData } from "@/types";
+import { UserData } from "@/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
