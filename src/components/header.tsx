@@ -39,7 +39,7 @@ const signedNav = [
   },
 ];
 
-export default function Header({ className }: { className?: string }) {
+export default function Header() {
   const [search, setSearch] = useState("");
   const { signIn, checkSignIn } = useContext(AuthContext);
   const router = useRouter();
@@ -61,7 +61,7 @@ export default function Header({ className }: { className?: string }) {
   if (pathname === "/signin" || pathname == "/signup") return null;
   return (
     <header
-      className={`w-full h-20 flex space ${className} justify-evenly items-center`}
+      className={`w-full h-20 flex space md:absolute md:top-3 justify-evenly items-center md:bg-transparent sticky z-50 top-0 bg-slate-950 `}
     >
       <Image
         priority={true}
@@ -69,11 +69,11 @@ export default function Header({ className }: { className?: string }) {
         onClick={() => {
           router.push("/");
         }}
-        className="w-1/6 cursor-pointer"
+        className="lg:w-1/6 w-1/3 cursor-pointer"
         alt="Logo"
       />
       <div className="relative flex">
-        <nav className="flex space-x-4 mr-10 items-center gap-5 list-none">
+        <nav className="md:flex hidden space-x-4 mr-10 items-center gap-5 list-none">
           {navLinks.map((item) => (
             <li
               className={navlink}

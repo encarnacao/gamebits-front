@@ -65,25 +65,26 @@ export default function Home() {
     }
   }, [signIn]);
 
+  const description = "lg:text-4xl md:text-xl serifed text-lg";
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 pt-0">
+    <main className="flex min-h-screen flex-col items-center pb-24 pt-0">
       <div className="relative">
         <Image
           priority={true}
           src={HiFiRush}
           alt="Hi-Fi Rush"
-          className="max-w-full"
+          className="h-96 z-0 object-cover md:h-auto"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent"></div>
-        <div className="absolute inset-0 gradient-background"></div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black via-transparent to-transparent"></div>
+        <div className="absolute inset-0 z-0 gradient-background"></div>
       </div>
-      <Header className="absolute top-4" />
-      <div className="w-1/2 flex flex-col items-center absolute top-[480px]">
-        <h1 className="text-4xl serifed">Catalogue seus jogos.</h1>
-        <h1 className="text-4xl serifed">Registre seu progresso.</h1>
-        <h1 className="text-4xl serifed">Compartilhe suas opiniões.</h1>
+      <div className="md:w-1/2 w-full flex flex-col items-center lg:top-[300px] xl:top-[480px] md:top-80 absolute top-72">
+        <h1 className={description}>Catalogue seus jogos.</h1>
+        <h1 className={description}>Registre seu progresso.</h1>
+        <h1 className={description}>Compartilhe suas opiniões.</h1>
         <Link
-          className="flex justify-center bg-orange-500 hover:bg-orange-600 transition-all text-white font-bold py-2 px-4 rounded-full mt-10 min-w-fit w-1/4"
+          className="flex justify-center md:text-base bg-orange-500 hover:bg-orange-600 transition-all text-white font-bold py-2 px-4 rounded-full mt-10 min-w-fit w-1/4"
           href="/signup"
         >
           Crie sua conta
@@ -91,7 +92,7 @@ export default function Home() {
       </div>
       <div className="mx-auto mt-10">
         <h1 className="text-slate-400 text-3xl">Na GameBits você pode:</h1>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid lg:grid-cols-3 gap-4 md:grid-cols-2">
           {CardInfo.map((card) => (
             <Card key={card.title} cardProps={card} />
           ))}
