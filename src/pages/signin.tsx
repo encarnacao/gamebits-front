@@ -34,14 +34,17 @@ export default function SignIn() {
 
   return (
     <main className="flex min-h-screen">
-      <div className="flex flex-col w-3/4 overflow-hidden max-h-screen">
+      <div className="md:flex hidden flex-col w-3/4 overflow-hidden max-h-screen">
         <Link href="/" className="flex justify-center align-middle">
           <Image priority={false} src={logo} className="w-2/5" alt="Logo" />
         </Link>
         <h1 className="self-center text-2xl">Jogue, registre e compartilhe</h1>
         <GradientImage src={zelda} alt="Zelda" />
       </div>
-      <div className="flex flex-col w-1/4 p-10 bg-slate-900 justify-evenly">
+      <div className="flex flex-col lg:w-1/4 md:w-1/2 w-full p-10 bg-slate-900 justify-evenly">
+      <Link href="/" className="flex justify-center align-middle">
+          <Image priority={false} src={logo} className="md:hidden w-2/5" alt="Logo" />
+        </Link>
         <h1 className="self-center text-2xl">Faça seu login</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex flex-col">
