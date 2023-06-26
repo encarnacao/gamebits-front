@@ -37,7 +37,7 @@ export default function MembersPage({
           </button>
         </form>
       </div>
-      <div className="flex flex-col w-full items-center justify-between flex-1 md:p-10 pb-20 text-center bg-slate-950 mx-auto mt-2">
+      <div className="flex flex-col w-full items-center justify-between flex-1 md:p-10 pb-20 text-center bg-slate-950 md:bg-gradient-to-t from-black to-slate-950 mx-auto mt-2">
         {users.length === 0 ? (
           <h1>Nenhum resultado encontrado</h1>
         ) : (
