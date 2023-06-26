@@ -39,12 +39,12 @@ export default function GameReviewCard(review: ReviewProps & GameReviews) {
             height={200}
             alt="user"
             className="w-20 rounded-full cursor-pointer"
-            onClick={() => router.push(`/user/${review.reviewWriter.id}`)}
+            onClick={() => router.push(`/u/${review.reviewWriter.username}`)}
           />
           <div className="flex w-full justify-between ml-2">
             <div
               className="group bg-white/10 p-2 rounded-lg cursor-pointer"
-              onClick={() => router.push(`/user/${review.reviewWriter.id}`)}
+              onClick={() => router.push(`/u/${review.reviewWriter.username}`)}
             >
               <p className="serifed text-lg group-hover:text-orange-500">{review.reviewWriter.username}</p>
               <p>Nota:</p>
