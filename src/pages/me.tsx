@@ -1,14 +1,22 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { FollowData, LibraryEntry, UserData } from "@/types";
+import {
+  FollowData,
+  LibraryEntry,
+  ReviewProps,
+  UserData,
+  UserReviews,
+} from "@/types";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import {
   getFollowers,
   getFollowing,
   getMe,
   getUserLibrary,
+  getUserReviews,
   getUserWishlist,
 } from "@/api";
 import UserProfile from "@/components/user-profile";
+import { checkReviewProps } from "@/helpers";
 
 export default function MePage({
   userData,
@@ -16,6 +24,7 @@ export default function MePage({
   wishlistData,
   followersData,
   followingData,
+  reviews,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const profileProps = {
     userData,
@@ -23,6 +32,7 @@ export default function MePage({
     wishlistData,
     followersData,
     followingData,
+    reviews,
   };
   return (
     <main>
@@ -37,15 +47,18 @@ export const getServerSideProps: GetServerSideProps<{
   wishlistData: LibraryEntry[];
   followersData: FollowData[];
   followingData: FollowData[];
+  reviews: (UserReviews & ReviewProps)[];
 }> = async (context) => {
   try {
-    const cookies = parseCookies(context);
-    const token = cookies.token;
+    const { token } = parseCookies(context);
     const userData = await getMe(token);
     const gamesData = await getUserLibrary(userData.id);
     const wishlistData = await getUserWishlist(userData.id);
     const followersData = await getFollowers(userData.id);
     const followingData = await getFollowing(userData.id);
+    const reviewData = await getUserReviews(userData.id);
+    const reviews = checkReviewProps(reviewData, userData.id) as (UserReviews &
+      ReviewProps)[];
     setCookie(context, "id", JSON.stringify(userData.id), { path: "/" });
     return {
       props: {
@@ -54,6 +67,7 @@ export const getServerSideProps: GetServerSideProps<{
         wishlistData,
         followersData,
         followingData,
+        reviews,
       },
     };
   } catch {
