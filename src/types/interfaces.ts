@@ -86,7 +86,7 @@ export interface GameReviews {
   createdAt: string;
 }
 
-export interface UserReviews{
+export interface UserReviews {
   id: number;
   text: string;
   rating: number;
@@ -102,6 +102,12 @@ export interface UserReviews{
   upVotes: number[];
   downVotes: number[];
   createdAt: string;
+}
+
+export interface ReviewProps {
+  upvoted: boolean;
+  downvoted: boolean;
+  score: number;
 }
 
 export interface FollowData {
