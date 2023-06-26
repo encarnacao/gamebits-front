@@ -86,7 +86,7 @@ export interface GameReviews {
   createdAt: string;
 }
 
-export interface GameReviews {
+export interface UserReviews{
   id: number;
   text: string;
   rating: number;
