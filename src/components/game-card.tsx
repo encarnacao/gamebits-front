@@ -13,7 +13,7 @@ export default function GameCard({ data }: { data: GameData }) {
     <div className="flex w-full overflow-hidden rounded-lg h-52 bg-slate-900 my-4 transition-all hover:bg-slate-800">
       <Image
         src={data.coverUrl}
-        className={"object-cover" + (releasedGame ? " cursor-pointer" : "")}
+        className={"object-cover md:w-auto" + (releasedGame ? " cursor-pointer" : "")}
         onClick={handleClick}
         alt="Game Cover"
         width={132}
@@ -23,7 +23,7 @@ export default function GameCard({ data }: { data: GameData }) {
         <div className="flex justify-between">
           <h1
             className={
-              "text-2xl font-bold transition-all " +
+              "md:text-2xl font-bold transition-all " +
               (releasedGame
                 ? "hover:text-orange-500 cursor-pointer"
                 : "hover:text-red-600")
@@ -33,8 +33,8 @@ export default function GameCard({ data }: { data: GameData }) {
             {data.name}
           </h1>
           <div>
-            <h2 className="text-l font-bold">{data.platformNames}</h2>
-            <h3 className="text-l font-bold">
+            <h2 className="md:text-lg text-xs font-bold">{data.platformNames}</h2>
+            <h3 className="md:text-lg text-xs font-bold">
               {releasedGame ? data.releaseDate : "Lançamento não definido"}
             </h3>
           </div>
