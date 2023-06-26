@@ -14,7 +14,7 @@ export default function UserMenu({
   };
   const menu = ["Jogos", "Wishlist", "Seguindo", "Seguidores", "Reviews"];
   return (
-    <div className="flex w-3/5 flex-1 p-2 text-center bg-slate-950 mx-auto">
+    <div className="flex w-3/5 flex-1 p-2 text-center bg rounded-b-xl bg-slate-950 mx-auto">
       <nav className="flex w-full justify-evenly list-none">
         {menu.map((item, index) => (
           <li

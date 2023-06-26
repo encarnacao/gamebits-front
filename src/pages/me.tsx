@@ -1,7 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { FollowData, LibraryEntry, UserData } from "@/types";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
-import { useState } from "react";
 import {
   getFollowers,
   getFollowing,
@@ -9,10 +8,7 @@ import {
   getUserLibrary,
   getUserWishlist,
 } from "@/api";
-import UserInfo from "@/components/user-info";
-import UserMenu from "@/components/user-menu";
-import LibraryInfo from "@/components/library-info";
-import Follows from "@/components/follows";
+import UserProfile from "@/components/user-profile";
 
 export default function MePage({
   userData,
@@ -21,21 +17,16 @@ export default function MePage({
   followersData,
   followingData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [selected, setSelected] = useState(0);
-  const cards = [
-    <LibraryInfo key="game" library={gamesData} />,
-    <LibraryInfo key="wishlist" library={wishlistData} />,
-    <Follows key="following" followData={followingData}/>,
-    <Follows key="followers" followData={followersData}/>,
-    <>Não implementado ainda</>,
-  ];
+  const profileProps = {
+    userData,
+    gamesData,
+    wishlistData,
+    followersData,
+    followingData,
+  };
   return (
-    <main className="flex flex-col">
-      <UserInfo userData={userData} />
-      <UserMenu selected={selected} setSelected={setSelected} />
-      <div className="flex flex-col items-center justify-center">
-        {cards[selected]}
-      </div>
+    <main>
+      <UserProfile {...profileProps} />
     </main>
   );
 }

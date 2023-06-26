@@ -7,7 +7,7 @@ export default function LibraryInfo({
   library: LibraryEntry[];
 }) {
   return (
-    <main className="flex flex-col bg w-3/5 bg-slate-950 mx-auto mt-2">
+    <main className="flex flex-col w-3/5 rounded-xl bg-gradient-to-t from-black to-slate-950 mx-auto mt-2">
       {library.map((entry) => (
         <LibraryCard entry={entry} key={`${entry.id}`} />
       ))}

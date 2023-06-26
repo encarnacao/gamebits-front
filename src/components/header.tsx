@@ -35,7 +35,7 @@ const signedNav = [
   },
   {
     name: "SAIR",
-    path: "/",
+    path: "/signin",
   },
 ];
 

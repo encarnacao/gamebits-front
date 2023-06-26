@@ -27,7 +27,7 @@ export default function UserInfo({ userData }: { userData: UserData }) {
     }
   };
   return (
-    <div className="flex w-3/5 items-center justify-between flex-1 p-10 text-center mt-32 bg-slate-950 mx-auto border-b-4 border-slate-600">
+    <div className="flex w-3/5 items-center justify-between flex-1 p-10 text-center mt-32  bg-gradient-to-b from-black to-slate-950 mx-auto border-b-4 border-slate-900">
       <div className="flex items-center">
         <Image
           src={userData.imageUrl}
