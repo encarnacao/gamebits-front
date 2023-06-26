@@ -27,7 +27,7 @@ export default function UserProfile({
     <>Não implementado ainda</>,
   ];
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col lg:w-4/5 mx-auto">
       <UserInfo userData={userData} />
       <UserMenu selected={selected} setSelected={setSelected} />
       <div className="flex flex-col items-center justify-center">

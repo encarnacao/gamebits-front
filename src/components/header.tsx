@@ -69,7 +69,7 @@ export default function Header() {
         onClick={() => {
           router.push("/");
         }}
-        className="lg:w-1/6 w-1/3 cursor-pointer"
+        className="lg:w-1/6 md:w-1/5 w-1/3 cursor-pointer"
         alt="Logo"
       />
       <div className="relative flex">
@@ -100,7 +100,7 @@ export default function Header() {
               handleSubmit();
             }
           }}
-          placeholder="Buscar"
+          placeholder="Buscar jogos"
         />
         <div className="absolute inset-y-0 right-5 flex items-center pl-4 cursor-pointer">
           <MagnifyingGlassIcon
