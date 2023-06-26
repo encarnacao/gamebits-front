@@ -31,7 +31,7 @@ export default function GameButtons({
       status: "finished",
       icon: FlagIcon,
       boolean: booleans.finished,
-      trueText: "Marcar como não terminado",
+      trueText: "Desmarcar como terminado",
       falseText: "Marcar como terminado",
       disabled: !booleans.inLibrary || booleans.inWishlist || booleans.platinum,
       function: async () => {
@@ -73,9 +73,10 @@ export default function GameButtons({
       function: addWishlistEntry,
     },
   ];
+
   return (
-    <div className="flex w-3/5 p-10 text-center bg-slate-950 mx-auto border-b-4 border-slate-600">
-      <div className="flex w-full items-center gap-20 mx-auto">
+    <div className="flex w-full md:p-10 p-5 text-center bg-slate-950 mx-auto border-b-4 border-slate-900">
+      <div className="md:flex w-full gap-5 grid grid-cols-2 md:items-center justify-between mx-auto">
       {BUTTONS.map((button, index) => (
         <LibraryButton props={button} gameId={gameId} key={index} />
       ))}

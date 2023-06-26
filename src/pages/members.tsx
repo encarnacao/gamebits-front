@@ -21,10 +21,10 @@ export default function MembersPage({
   };
 
   return (
-    <main className="flex flex-col mx-auto mt-32 w-3/5">
-      <div className="flex w-full items-center justify-between flex-1 p-10 text-center bg-slate-950 mx-auto border-t-4 border-slate-600">
+    <main className="flex flex-col mx-auto md:mt-32 md:w-4/5 w-full">
+      <div className="flex md:flex-row flex-col w-full items-center justify-between flex-1 p-10 text-center bg-slate-950 mx-auto border-t-4 border-slate-900">
         <h1 className="text-4xl serifed">Membros</h1>
-        <form onSubmit={handleSubmit} className="flex">
+        <form onSubmit={handleSubmit} className="flex md:mt-0 mt-4">
           <TextInput
             name="search"
             value={query}
@@ -37,7 +37,7 @@ export default function MembersPage({
           </button>
         </form>
       </div>
-      <div className="flex flex-col w-full items-center justify-between flex-1 p-10 text-center bg-slate-950 mx-auto mt-2">
+      <div className="flex flex-col w-full items-center justify-between flex-1 md:p-10 pb-20 text-center bg-slate-950 md:bg-gradient-to-t from-black to-slate-950 mx-auto mt-2">
         {users.length === 0 ? (
           <h1>Nenhum resultado encontrado</h1>
         ) : (

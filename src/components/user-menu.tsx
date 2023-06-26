@@ -14,11 +14,11 @@ export default function UserMenu({
   };
   const menu = ["Jogos", "Wishlist", "Seguindo", "Seguidores", "Reviews"];
   return (
-    <div className="flex w-3/5 flex-1 p-2 text-center bg-slate-950 mx-auto">
+    <div className="flex w-full flex-1 p-2 text-center bg rounded-b-xl bg-slate-950 mx-auto">
       <nav className="flex w-full justify-evenly list-none">
         {menu.map((item, index) => (
           <li
-            className={`text-2xl serifed transition-all mb-4 cursor-pointer ${
+            className={`md:text-2xl text-lg serifed transition-all mb-4 cursor-pointer ${
               selected === index
                 ? "text-orange-500"
                 : "text-slate-200 hover:text-orange-300"

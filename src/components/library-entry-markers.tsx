@@ -8,8 +8,8 @@ export default function Marker({
   boolean: boolean;
 }) {
   return (
-    <div className={`border ml-2 rounded-full p-1 ${boolean ? "" : "border-dashed opacity-20"}`}>
-      <Icon className="w-4 h-4" />
+    <div className={`border md:h-7 h-6 ml-2 rounded-full p-1 ${boolean ? "" : "border-dashed opacity-20"}`}>
+      <Icon className="md:w-4 md:h-4 w-3 h-3" />
     </div>
   );
 }

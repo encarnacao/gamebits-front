@@ -44,12 +44,12 @@ export default function SingUp() {
   };
 
   return (
-    <main className="flex flex-col max-h-screen overflow-hidden">
+    <main className="flex flex-col h-full overflow-hidden">
       <Link href="/">
         <Image
           priority={false}
           src={logo}
-          className="absolute z-10 top-1 left-1 w-1/6"
+          className="absolute z-10 top-1 left-1 lg:w-1/6 md:w-1/3 w-1/2"
           alt="Logo"
         />
       </Link>
@@ -63,7 +63,9 @@ export default function SingUp() {
       bg-slate-900/70 p-10
         rounded-lg 
         shadow-lg 
-        w-1/3
+        lg:w-1/3
+        md:w-1/2
+        w-full
 				justify-evenly
 				flex flex-col
         `}

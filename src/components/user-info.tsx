@@ -27,33 +27,35 @@ export default function UserInfo({ userData }: { userData: UserData }) {
     }
   };
   return (
-    <div className="flex w-3/5 items-center justify-between flex-1 p-10 text-center mt-32 bg-slate-950 mx-auto border-b-4 border-slate-600">
+    <div className="flex w-full items-center justify-between flex-1 md:p-10 p-2 text-center md:mt-32 mt-4 transition-all  bg-gradient-to-b from-black to-slate-950 mx-auto border-b-4 border-slate-900">
       <div className="flex items-center">
         <Image
           src={userData.imageUrl}
           width={150}
           height={150}
-          className="rounded-full"
+          className="rounded-full w-1/3 md:w-auto"
           alt="avatar"
         />
-        <h1 className="text-4xl text-slate-200 serifed ml-8">
-          {userData.username}
-        </h1>
-        <button
-          className={`py-2 px-6 bg-orange-500 hover:bg-orange-700 rounded-lg ml-10  transition-all ${
-            showButton ? "" : "hidden"
-          }`}
-          onClick={handleFollow}
-        >
-          {userData.followedByUser ? "Deixar de seguir" : "Seguir"}
-        </button>
+        <div className="md:flex">
+          <h1 className="md:text-4xl text-xl text-slate-200 serifed md:ml-8">
+            {userData.username}
+          </h1>
+          <button
+            className={`md:py-2 md:px-6 text-xs p-1 bg-orange-500 hover:bg-orange-700 rounded-lg md:ml-10  transition-all ${
+              showButton ? "" : "hidden"
+            }`}
+            onClick={handleFollow}
+          >
+            {userData.followedByUser ? "Deixar de seguir" : "Seguir"}
+          </button>
+        </div>
       </div>
       <div>
         <div>
-          <h2 className="text-2xl text-slate-200 serifed mb-4">
+          <h2 className="md:text-2xl text-sm text-slate-200 serifed mb-4">
             seguidores: {userData.followers}
           </h2>
-          <h2 className="text-2xl text-slate-200 serifed mb-4">
+          <h2 className="md:text-2xl text-sm text-slate-200 serifed mb-4">
             seguindo: {userData.following}
           </h2>
         </div>

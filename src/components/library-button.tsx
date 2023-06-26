@@ -50,7 +50,7 @@ export default function LibraryButton({
     props.boolean && props.type !== "time"
       ? "bg-red-500 hover:bg-red-600"
       : "bg-orange-500 hover:bg-orange-600"
-  } cursor-pointer p-2 rounded-xl`;
+  } cursor-pointer p-2 rounded-xl text-xs md:text-sm lg:text-base`;
   return (
     <div
       className={props.disabled ? "hidden" : "flex justify-center items-center"}

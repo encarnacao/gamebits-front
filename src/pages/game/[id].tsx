@@ -15,13 +15,13 @@ export default function GamePage({
   const libraryBooleans = booleans as GameBooleans;
   if (!gameData) {
     return (
-      <div className="flex w-3/5 items-center justify-between p-10 text-center mt-40 bg-slate-950 mx-auto border-b-4 border-slate-600">
+      <div className="flex w-full items-center justify-center p-10 text-center h-screen bg-slate-950 mx-auto">
         Game not found
       </div>
     );
   }
   return (
-    <main className="flex flex-col justify-center items-center">
+    <main className="flex lg:w-4/5 flex-col justify-center items-center mx-auto">
       <GameInfo gameData={gameData} />
       {token ? (
         <GameButtons
@@ -33,7 +33,6 @@ export default function GamePage({
           Entre na sua conta para catalogar
         </div>
       )}
-      {JSON.stringify(libraryBooleans)}
     </main>
   );
 }
