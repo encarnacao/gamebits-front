@@ -72,6 +72,38 @@ export interface LibraryButtonProps {
   function: (...args: any) => Promise<boolean>;
 }
 
+export interface GameReviews {
+  id: number;
+  text: string;
+  rating: number;
+  reviewWriter: {
+    id: number;
+    username: string;
+    imageUrl: string;
+  };
+  upVotes: number[];
+  downVotes: number[];
+  createdAt: string;
+}
+
+export interface GameReviews {
+  id: number;
+  text: string;
+  rating: number;
+  game: {
+    id: number;
+    igdbId: number;
+    name: string;
+    coverUrl: string;
+    originalReleaseDate: string;
+    genres: string;
+    platforms: string;
+  };
+  upVotes: number[];
+  downVotes: number[];
+  createdAt: string;
+}
+
 export interface FollowData {
   id: number;
   username: string;
