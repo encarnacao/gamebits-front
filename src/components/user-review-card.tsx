@@ -39,7 +39,10 @@ export default function UserReviewCard(review: UserReviews & ReviewProps) {
                 <p>Nota:</p>
                 <Rating value={review.rating} readOnly />
               </div>
-              <div className="group bg-white/10 p-2 rounded-lg cursor-pointer">
+              <div
+                className="group bg-white/10 p-2 rounded-lg cursor-pointer"
+                onClick={() => router.push(`/game/${review.game.igdbId}`)}
+              >
                 <p className="serifed text-lg group-hover:text-orange-500">
                   Plataformas: {review.game.platforms}
                 </p>
