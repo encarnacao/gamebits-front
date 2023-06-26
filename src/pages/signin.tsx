@@ -29,6 +29,8 @@ export default function SignIn() {
       setCookie(null, "token", response.token, { path: "/" });
       checkSignIn();
       router.push("/me");
+    } else {
+      alert("Email ou senha incorretos");
     }
   };
 
