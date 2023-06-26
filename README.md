@@ -9,11 +9,11 @@ O deploy da aplicação pode ser acessado em: https://gamebits-front.vercel.app/
 
 ## Sobre o projeto
 
-Esta é uma aplicação desenvolvida em NextJS, completamente responsiva, onde tudo, desde design até a implementação, foi feito por mim. O objetivo do projeto é ser uma rede social de catalogação e resenha de jogos de videogame, onde o usuário pode criar uma conta, adicionar jogos à sua biblioteca e seguir outros usuários. Além disso é possível marcar os jogos como terminados, platinados e adicionar o tempo de jogo, para que o usuário possa ter um controle sobre seus jogos. Também conta com uma Wishlist, onde o usuário pode adicionar jogos que deseja adicionar à sua biblioteca futuramente.
+Esta é uma aplicação desenvolvida em NextJS, completamente responsiva, onde tudo, desde design até a implementação, foi feito por mim. O objetivo do projeto é ser uma rede social de catalogação e resenha de jogos de videogame, onde o usuário pode criar uma conta, adicionar jogos à sua biblioteca, escrever resenhas de até 1000 caractéres sobre jogos em sua biblioteca e seguir outros usuários. Além disso é possível marcar os jogos como terminados, platinados e adicionar o tempo de jogo, para que o usuário possa ter um controle sobre seus jogos. Também conta com uma Wishlist, onde o usuário pode adicionar jogos que deseja adicionar à sua biblioteca futuramente.
 
 O projeto integra uma API REST desenvolvida em NodeJS, cujo repositório pode ser acessado [aqui](https://github.com/encarnacao/gamebits-api), e também utiliza a API do IGDB para obter informações sobre os jogos.
 
-Futuramente pretendo adicionar mais funcionalidades, como o sistema de reviews, onde o usuário poderá escrever uma resenha sobre um jogo, que contará com upvotes e downvotes, e também exibir estatísticas sobre os jogos, como tempo médio de jogo e nota baseada nas reviews.
+Futuramente pretendo adicionar mais funcionalidades, como o sistema de upvotes e downvotes para reviews, e também exibir estatísticas sobre os jogos, como tempo médio de jogo e nota baseada nas reviews.
 
 ## Tecnologias utilizadas
 
@@ -24,6 +24,7 @@ Futuramente pretendo adicionar mais funcionalidades, como o sistema de reviews, 
 - DayJS
 - TailwindCSS
 - Nookies
+- Material UI
 
 ## Como executar o projeto
 
